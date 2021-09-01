@@ -11,7 +11,13 @@ export class UserService implements IUserService {
   }
 
   async createUser(userData: IUser): Promise<boolean> {
-    throw await this.getDatabaseManager().createUser(userData);
+    const result = await this.getDatabaseManager().createUser(userData);
+
+    if (result) {
+      return true;
+    }
+
+    return false;
   }
 
   getDatabaseManager(): IDatabaseManager {

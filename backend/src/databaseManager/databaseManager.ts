@@ -24,16 +24,20 @@ export class DatabaseManager implements IDatabaseManager {
   }
 
   async createUser(userData: IUser): Promise<IUser> {
-    const user = new User();
-    user.address = userData.address ? userData.address : null;
-    user.name = userData.name;
-    user.surname = userData.surname;
+    try {
+      const user = new User();
+      user.address = userData.address ? userData.address : null;
+      user.name = userData.name;
+      user.surname = userData.surname;
 
-    const userRepository = await this.getUserRepository();
+      const userRepository = await this.getUserRepository();
 
-    const res = await userRepository.save(user);
-    console.log(res);
-    return res;
+      const res = await userRepository.save(user);
+      console.log(4, res);
+      return res;
+    } catch (err) {
+      console.log(3, err);
+    }
   }
 
   private async getUserRepository() {

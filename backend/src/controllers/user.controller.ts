@@ -14,11 +14,13 @@ export class UserController {
     try {
       const user: IUser = req.body;
       const isSuccess = await this.getUserService().createUser(user);
-
+      console.log(1, isSuccess);
       res
         .status(ResponseCodeEnum.Created)
         .json({ ok: isSuccess } as IsSuccessResponse);
     } catch (err) {
+      console.log(2, err);
+
       this.errorCatcher(err, res);
     }
   }
