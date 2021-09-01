@@ -4,6 +4,7 @@ import express = require("express");
 import { Request, Response } from "express";
 import { ResponseCodeEnum } from "./enums/response-code.enum";
 import { ErrorResponse } from "./responses/error-response.interface";
+import { UserRouter } from "./routes/user.router";
 
 const app = express();
 app.use(express.json());
