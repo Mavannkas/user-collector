@@ -1,0 +1,29 @@
+{
+   "name": "backend",
+   "version": "1.0.0",
+   "description": "",
+   "main": "index.js",
+   "scripts": {
+      "start": "ts-node src/index.ts",
+      "start:nodemon": "./node_modules/nodemon/bin/nodemon.js",
+      "start:prod": "npm run build && node ./dist/src/server.js",
+      "build": "npx tsc"
+   },
+   "keywords": [],
+   "author": "",
+   "license": "ISC",
+   "dependencies": {
+      "body-parser": "^1.18.1",
+      "express": "^4.15.4",
+      "reflect-metadata": "^0.1.10",
+      "sqlite3": "^4.0.3",
+      "typeorm": "0.2.37"
+   },
+   "devDependencies": {
+      "@types/express": "^4.17.13",
+      "@types/node": "^8.0.29",
+      "nodemon": "^2.0.12",
+      "ts-node": "3.3.0",
+      "typescript": "3.3.3333"
+   }
+}
