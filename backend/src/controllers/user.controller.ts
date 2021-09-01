@@ -10,7 +10,7 @@ import { ErrorResponse } from "../responses/error-response.interface";
 import { PageResponse } from "../responses/page-response.interface";
 
 export class UserController {
-  static async createUser(req: Request, res: Response, next: NextFunction) {
+  async createUser(req: Request, res: Response, next: NextFunction) {
     try {
       const user: IUser = req.body;
       const isSuccess = await this.getUserService().createUser(user);
@@ -23,7 +23,7 @@ export class UserController {
     }
   }
 
-  static async getFirstPage(req: Request, res: Response, next: NextFunction) {
+  async getFirstPage(req: Request, res: Response, next: NextFunction) {
     try {
       const page = await this.getUserService().getPage(1);
       this.sendPageResponse(page, res);
@@ -32,7 +32,7 @@ export class UserController {
     }
   }
 
-  static async getPage(req: Request, res: Response, next: NextFunction) {
+  async getPage(req: Request, res: Response, next: NextFunction) {
     try {
       const page = await this.getUserService().getPage(+req.params.page);
       this.sendPageResponse(page, res);
@@ -41,19 +41,19 @@ export class UserController {
     }
   }
 
-  private static getUserService(): IUserService {
+  private getUserService(): IUserService {
     const userService: IUserService = new UserService();
     return userService;
   }
 
-  private static errorCatcher(error: string, res: Response) {
+  private errorCatcher(error: Error, res: Response) {
     res.status(ResponseCodeEnum.BadRequest).json({
-      error,
+      error: error.message,
       code: ResponseCodeEnum.BadRequest,
     } as ErrorResponse);
   }
 
-  private static sendPageResponse(page: PageResponse, res) {
+  private sendPageResponse(page: PageResponse, res) {
     res.status(ResponseCodeEnum.OK).json(page);
   }
 }

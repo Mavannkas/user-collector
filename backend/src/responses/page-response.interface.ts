@@ -1,7 +1,7 @@
-import { IUser } from "../interface/user.interface";
+import { User } from "../entity/User";
 
 export interface PageResponse {
-  users: IUser[];
+  users: User[];
   page: number;
   lastPage: number;
 }
