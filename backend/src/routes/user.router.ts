@@ -11,6 +11,11 @@ Router.get("/", (req: Request, res: Response, next: NextFunction) => {
   userController.getFirstPage(req, res, next);
 });
 
+Router.get("/all", (req: Request, res: Response, next: NextFunction) => {
+  const userController = new UserController();
+  userController.getAll(req, res, next);
+});
+
 Router.get("/:page", (req: Request, res: Response, next: NextFunction) => {
   const userController = new UserController();
   userController.getPage(req, res, next);
@@ -42,5 +47,4 @@ Router.post(
     }
   }
 );
-
 export const UserRouter = Router;

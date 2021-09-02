@@ -20,6 +20,10 @@ export class UserService implements IUserService {
     return false;
   }
 
+  async getAll(): Promise<IUser[]> {
+    return await this.getDatabaseManager().getAll();
+  }
+
   getDatabaseManager(): IDatabaseManager {
     const databaseManager: IDatabaseManager = new DatabaseManager();
     return databaseManager;

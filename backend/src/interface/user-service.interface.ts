@@ -6,4 +6,5 @@ export interface IUserService {
   getPage(page: number): Promise<PageResponse>;
   createUser(userData: IUser): Promise<boolean>;
   getDatabaseManager(): IDatabaseManager;
+  getAll(): Promise<IUser[]>;
 }

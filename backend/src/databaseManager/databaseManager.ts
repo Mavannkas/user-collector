@@ -23,6 +23,14 @@ export class DatabaseManager implements IDatabaseManager {
     };
   }
 
+  async getAll(): Promise<IUser[]> {
+    const userRepository = await this.getUserRepository();
+
+    const users = await userRepository.find();
+
+    return users;
+  }
+
   async createUser(userData: IUser): Promise<IUser> {
     try {
       const user = new User();

@@ -11,7 +11,7 @@ Steps to run this project:
 
 ## **Get User Page**
 
-Returns one page of user om the page
+Returns one page of users
 
 - **URL**
 
@@ -35,6 +35,35 @@ Returns one page of user om the page
 
   ```javascript
   fetch("/1")
+    .then((res) => {
+      if (!res.ok) throw res;
+      return res.json();
+    })
+    .then((res) => console.log(res))
+    .catch((err) => console.warn(res));
+  ```
+
+## **Get All users**
+
+Returns all users
+
+- **URL**
+
+  /all
+
+- **Method:**
+
+  `GET`
+
+- **Success Response:**
+
+  - **Code:** 200 <br />
+    **Content:** `[{ name: "Adam", surname: "Lorem", address: null }]`
+
+- **Sample Call:**
+
+  ```javascript
+  fetch("/all")
     .then((res) => {
       if (!res.ok) throw res;
       return res.json();
@@ -78,7 +107,7 @@ Create one user
     surname: "Kielecki",
     address: "Os. Mickiewicza",
   };
-  
+
   fetch("/", {
     method: "POST",
     body: JSON.stringify(req),

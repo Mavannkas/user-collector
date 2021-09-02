@@ -12,6 +12,7 @@ import { PageResponse } from "../responses/page-response.interface";
 export class UserController {
   async createUser(req: Request, res: Response, next: NextFunction) {
     try {
+      console.log(req.body);
       const user: IUser = req.body;
       const isSuccess = await this.getUserService().createUser(user);
       console.log(1, isSuccess);
@@ -38,6 +39,15 @@ export class UserController {
     try {
       const page = await this.getUserService().getPage(+req.params.page);
       this.sendPageResponse(page, res);
+    } catch (err) {
+      this.errorCatcher(err, res);
+    }
+  }
+
+  async getAll(req: Request, res: Response, next: NextFunction) {
+    try {
+      const data = await this.getUserService().getAll();
+      res.status(ResponseCodeEnum.OK).json(data);
     } catch (err) {
       this.errorCatcher(err, res);
     }
